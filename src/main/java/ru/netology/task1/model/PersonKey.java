@@ -19,14 +19,14 @@ public class PersonKey implements Serializable {
     @Column(name = "surname")
     private String surname;
     @Column(name = "age")
-    private String age;
+    private int age;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PersonKey personKey = (PersonKey) o;
-        return Objects.equals(name, personKey.name) && Objects.equals(surname, personKey.surname) && Objects.equals(age, personKey.age);
+        return Objects.equals(name, personKey.name) && Objects.equals(surname, personKey.surname) && (age == personKey.age);
     }
 
     @Override

@@ -8,12 +8,13 @@ import ru.netology.task1.model.Person;
 import ru.netology.task1.repository.HibernateRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
 public class HibernateController {
 
-    private HibernateRepository hibernateRepository;
+    private final HibernateRepository hibernateRepository;
 
     public HibernateController(HibernateRepository hibernateRepository) {
         this.hibernateRepository = hibernateRepository;
@@ -24,9 +25,13 @@ public class HibernateController {
         return hibernateRepository.getPersonsByCity(city);
     }
 
-    @GetMapping("init")
-    public String init() {
-        hibernateRepository.create();
-        return "OK";
+    @GetMapping("/persons/by-age")
+    public List<Person> getPersonsByAge(@RequestParam int age) {
+        return hibernateRepository.getPersonsByAge(age);
+    }
+
+    @GetMapping("/persons/by-name-and-surname")
+    public Optional<List<Person>> getPersonsByNameAndSurname(@RequestParam String name, @RequestParam String surname) {
+        return hibernateRepository.getPersonsByNameAndSurname(name, surname);
     }
 }
