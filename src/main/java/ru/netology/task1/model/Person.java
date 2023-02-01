@@ -11,9 +11,14 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@IdClass(PersonKey.class)
 public class Person {
-    @EmbeddedId
-    PersonKey personKey;
+    @Id
+    private String name;
+    @Id
+    private String surname;
+    @Id
+    private int age;
     @Column(name = "phone_number")
     private String phoneNumber;
     @Column(name = "city_of_living")

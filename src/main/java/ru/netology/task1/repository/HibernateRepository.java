@@ -9,7 +9,7 @@ import java.util.Optional;
 @Repository
 public class HibernateRepository {
 
-    private PersonJpaRepository personJpaRepository;
+    private final PersonJpaRepository personJpaRepository;
 
     public HibernateRepository(PersonJpaRepository personJpaRepository) {
         this.personJpaRepository = personJpaRepository;
@@ -20,7 +20,7 @@ public class HibernateRepository {
     }
 
     public List<Person> getPersonsByAge(int age) {
-        return personJpaRepository.findPersonWithLessThanAgeAndOrderByAge(age);
+        return personJpaRepository.findByAgeLessThanOrderByAge(age);
     }
 
     public Optional<List<Person>> getPersonsByNameAndSurname(String name, String surname) {
